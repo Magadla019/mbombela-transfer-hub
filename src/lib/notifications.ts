@@ -19,8 +19,8 @@ function tone(kind: 'order' | 'notification' | 'message') {
 export const soundOn = () => typeof window !== 'undefined' && localStorage.getItem('mb_sound_enabled') !== 'false';
 export function playTwice(kind: 'order' | 'notification' | 'message' = 'order') {
   if (!soundOn()) return;
-  tone(kind); setTimeout(() => tone(kind), 2000);
-  if (localStorage.getItem('mb_vibration') !== 'false') navigator.vibrate?.([200, 100, 200]);
+  if (kind === 'order') { try { void new Audio('/sounds/new-order.mp3').play().catch(() => tone(kind)); } catch { tone(kind); } } else { tone(kind); setTimeout(() => tone(kind), 2000); }
+  if (localStorage.getItem('mb_vibration') !== 'false') navigator.vibrate?.([500, 200, 500]);
 }
 export function notify(title: string, body: string) {
   if (typeof Notification === 'undefined' || Notification.permission !== 'granted' || localStorage.getItem('mb_desktop_notif') === 'false') return;
@@ -29,7 +29,16 @@ export function notify(title: string, body: string) {
 export async function askPermission() {
   localStorage.setItem('mb_notif_asked', 'true');
   if (typeof Notification === 'undefined') return 'unsupported';
-  return Notification.requestPermission();
+  const r = await Notification.requestPermission();
+  localStorage.setItem('notificationAllowed', String(r === 'granted'));
+  return r;
+}
+
+/** Warning banner shown on staff dashboards until browser notifications are allowed. */
+export function useNotificationPermission() {
+  const [state, setState] = useState<string>('granted');
+  useEffect(() => { if (typeof Notification !== 'undefined') setState(Notification.permission); }, []);
+  return { allowed: state === 'granted' || state === 'unsupported', request: async () => setState(await askPermission()) };
 }
 
 const FIVE_MIN = 5 * 60 * 1000;
