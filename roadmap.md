@@ -1,0 +1,19 @@
+- [x] Build splash, login, client pages, forms, tracking, and reviews.
+- [x] Build partner and driver dashboards with server-backed order workflows.
+- [x] Check desktop/mobile presentation and parcel-to-delivery flow.
+- [x] Add tenth restaurant, user-supplied menu catalogue and ordering sheet.
+- [ ] Verify official menus and licensed food images; automate updates when official sources are reachable.
+- [x] Remove exposed staff code hints and unsupported prices; update client navigation, dashboard and login controls.
+- [x] Remove simulated tracking markers and timing; retain private order access.
+- [ ] Add actual destination coordinates, protected live driver locations, and calculated route/ETA.
+- [ ] Add private authenticated conversations and media, with messaging controls.
+- [ ] Finish security review and end-to-end order/location tests; desktop/mobile visual checks passed.
+- [ ] Publish the requested single final deployment after live menus, licensed food photography, private chat, and verified tracking are complete.
+
+- [x] Match the new login references and use the supplied rider photo.
+- [x] Update nine price fields and PAXI totals without deleting data.
+- [x] Add manifest-only home-screen installation.
+- [ ] Add safe notification opt-in and delivery reminders.
+- [ ] Production deployment is awaiting approval; the publish request was declined.
+- [x] Menu photos on all items, Sync Now button, private chat (/messages + partner Messages), satellite tracker with green route/progress, Google Maps on Start Pickup/Delivery, order ringing every 5 min + Test Sound.
+- [ ] Official restaurant sites must allow automated reading for Sync Now to update prices.
