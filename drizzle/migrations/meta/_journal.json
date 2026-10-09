@@ -50,6 +50,13 @@
       "when": 1791390709191,
       "tag": "0006_noop_apply_imported",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1791517436954,
+      "tag": "0007_restaurant_catalogue_and_promotions",
+      "breakpoints": true
     }
   ]
 }

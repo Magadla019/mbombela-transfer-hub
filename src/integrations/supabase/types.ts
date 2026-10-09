@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      ads: {
+        Row: {
+          category: string
+          clicks: number
+          created_at: string
+          created_by: string | null
+          cta_text: string
+          id: string
+          image_url: string | null
+          is_active: boolean
+          priority: number
+          target_id: string | null
+          target_type: string | null
+          target_url: string
+          title: string
+        }
+        Insert: {
+          category: string
+          clicks?: number
+          created_at?: string
+          created_by?: string | null
+          cta_text?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          priority?: number
+          target_id?: string | null
+          target_type?: string | null
+          target_url: string
+          title: string
+        }
+        Update: {
+          category?: string
+          clicks?: number
+          created_at?: string
+          created_by?: string | null
+          cta_text?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          priority?: number
+          target_id?: string | null
+          target_type?: string | null
+          target_url?: string
+          title?: string
+        }
+        Relationships: []
+      }
       app_pricing: {
         Row: {
           category: string
@@ -163,6 +211,92 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      menu_categories: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          restaurant_id: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          restaurant_id: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          restaurant_id?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "menu_categories_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "restaurants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      menu_items: {
+        Row: {
+          category_id: string
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          is_available: boolean
+          is_featured: boolean
+          name: string
+          price: number
+          restaurant_id: string
+        }
+        Insert: {
+          category_id: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_available?: boolean
+          is_featured?: boolean
+          name: string
+          price?: number
+          restaurant_id: string
+        }
+        Update: {
+          category_id?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_available?: boolean
+          is_featured?: boolean
+          name?: string
+          price?: number
+          restaurant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "menu_items_category_id_restaurant_id_fkey"
+            columns: ["category_id", "restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "menu_categories"
+            referencedColumns: ["id", "restaurant_id"]
+          },
+          {
+            foreignKeyName: "menu_items_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "restaurants"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       menu_sync_logs: {
         Row: {
@@ -460,6 +594,45 @@ export type Database = {
         }
         Relationships: []
       }
+      restaurants: {
+        Row: {
+          background_url: string | null
+          created_at: string
+          delivery_time: string
+          description: string | null
+          id: string
+          is_active: boolean
+          logo_url: string | null
+          name: string
+          rating: number
+          slug: string
+        }
+        Insert: {
+          background_url?: string | null
+          created_at?: string
+          delivery_time?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          logo_url?: string | null
+          name: string
+          rating?: number
+          slug: string
+        }
+        Update: {
+          background_url?: string | null
+          created_at?: string
+          delivery_time?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          logo_url?: string | null
+          name?: string
+          rating?: number
+          slug?: string
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
           approved: boolean
@@ -504,7 +677,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      record_ad_click: { Args: { ad_id: string }; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
