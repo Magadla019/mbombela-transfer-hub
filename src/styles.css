@@ -19,3 +19,6 @@
 .login-input.access-code{padding-left:17px}
 
 :root { --chat-bg: #0B0B0B; --chat-sent: #005C4B; --chat-received: #202C33; --chat-tick: #53BDEB; --chat-online: #25D366; --route-green: #00FF00; }
+
+:root { --promotion: #E11D48; --catalogue-overlay: #000000; }
+.promotion-button{background:var(--promotion);color:var(--foreground)}.promotion-button:hover{background:color-mix(in oklab,var(--promotion) 88%,var(--foreground))}.catalogue-shade{background:linear-gradient(to top,color-mix(in oklab,var(--catalogue-overlay) 90%,transparent),color-mix(in oklab,var(--catalogue-overlay) 40%,transparent) 65%,color-mix(in oklab,var(--catalogue-overlay) 5%,transparent))}.deals-track{scrollbar-width:none}.deals-track::-webkit-scrollbar{display:none}

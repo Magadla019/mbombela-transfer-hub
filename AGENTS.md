@@ -19,3 +19,8 @@
 - Home-screen installation uses only a manifest and CDN-hosted icons, with no offline service worker, because preview and deployments must not serve stale pages.
 - Internal chat and driver_locations are private tables accessed only through server functions (client via signed-in session, partner via staff token) with 3s polling, because public read would expose private conversations and live rider positions.
 - Menu sync runs as a partner-triggered server function, not a Supabase edge function, per the TanStack server boundary.
+
+- Catalogue and ad writes use verified partner/master staff-token server functions; ordinary signed-in customers must not acquire management privileges.
+- Restaurant categories and items use restaurant-scoped tables and a composite foreign key so an item cannot use another restaurant’s category.
+- Existing restaurant slugs remain stable on rename to preserve saved ad destinations and customer links.
+- Catalogue uploads use signed slots and post-upload browser-facing signed URLs because workspace policy blocks public buckets.

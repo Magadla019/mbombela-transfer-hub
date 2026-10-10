@@ -17,6 +17,7 @@ import { Route as DriverControlCenterRouteImport } from './routes/driver-control
 import { Route as DriverDashboardRouteImport } from './routes/driver-dashboard'
 import { Route as DriverHomeRouteImport } from './routes/driver-home'
 import { Route as FoodOrderFormRouteImport } from './routes/food-order-form'
+import { Route as GroceriesRouteImport } from './routes/groceries'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as OrderHistoryRouteImport } from './routes/order-history'
@@ -30,6 +31,7 @@ import { Route as RequestTypeRouteImport } from './routes/request-type'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as SendParcelFormRouteImport } from './routes/send-parcel-form'
 import { Route as TrackOrderRouteImport } from './routes/track-order'
+import { Route as RestaurantSlugRouteImport } from './routes/restaurant.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -69,6 +71,11 @@ const DriverHomeRoute = DriverHomeRouteImport.update({
 const FoodOrderFormRoute = FoodOrderFormRouteImport.update({
   id: '/food-order-form',
   path: '/food-order-form',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GroceriesRoute = GroceriesRouteImport.update({
+  id: '/groceries',
+  path: '/groceries',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -136,6 +143,11 @@ const TrackOrderRoute = TrackOrderRouteImport.update({
   path: '/track-order',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RestaurantSlugRoute = RestaurantSlugRouteImport.update({
+  id: '/restaurant/$slug',
+  path: '/restaurant/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -146,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/driver-dashboard': typeof DriverDashboardRoute
   '/driver-home': typeof DriverHomeRoute
   '/food-order-form': typeof FoodOrderFormRoute
+  '/groceries': typeof GroceriesRoute
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/order-history': typeof OrderHistoryRoute
@@ -159,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/reviews': typeof ReviewsRoute
   '/send-parcel-form': typeof SendParcelFormRoute
   '/track-order': typeof TrackOrderRoute
+  '/restaurant/$slug': typeof RestaurantSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -169,6 +183,7 @@ export interface FileRoutesByTo {
   '/driver-dashboard': typeof DriverDashboardRoute
   '/driver-home': typeof DriverHomeRoute
   '/food-order-form': typeof FoodOrderFormRoute
+  '/groceries': typeof GroceriesRoute
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/order-history': typeof OrderHistoryRoute
@@ -182,6 +197,7 @@ export interface FileRoutesByTo {
   '/reviews': typeof ReviewsRoute
   '/send-parcel-form': typeof SendParcelFormRoute
   '/track-order': typeof TrackOrderRoute
+  '/restaurant/$slug': typeof RestaurantSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -193,6 +209,7 @@ export interface FileRoutesById {
   '/driver-dashboard': typeof DriverDashboardRoute
   '/driver-home': typeof DriverHomeRoute
   '/food-order-form': typeof FoodOrderFormRoute
+  '/groceries': typeof GroceriesRoute
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/order-history': typeof OrderHistoryRoute
@@ -206,6 +223,7 @@ export interface FileRoutesById {
   '/reviews': typeof ReviewsRoute
   '/send-parcel-form': typeof SendParcelFormRoute
   '/track-order': typeof TrackOrderRoute
+  '/restaurant/$slug': typeof RestaurantSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -218,6 +236,7 @@ export interface FileRouteTypes {
     | '/driver-dashboard'
     | '/driver-home'
     | '/food-order-form'
+    | '/groceries'
     | '/login'
     | '/messages'
     | '/order-history'
@@ -231,6 +250,7 @@ export interface FileRouteTypes {
     | '/reviews'
     | '/send-parcel-form'
     | '/track-order'
+    | '/restaurant/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -241,6 +261,7 @@ export interface FileRouteTypes {
     | '/driver-dashboard'
     | '/driver-home'
     | '/food-order-form'
+    | '/groceries'
     | '/login'
     | '/messages'
     | '/order-history'
@@ -254,6 +275,7 @@ export interface FileRouteTypes {
     | '/reviews'
     | '/send-parcel-form'
     | '/track-order'
+    | '/restaurant/$slug'
   id:
     | '__root__'
     | '/'
@@ -264,6 +286,7 @@ export interface FileRouteTypes {
     | '/driver-dashboard'
     | '/driver-home'
     | '/food-order-form'
+    | '/groceries'
     | '/login'
     | '/messages'
     | '/order-history'
@@ -277,6 +300,7 @@ export interface FileRouteTypes {
     | '/reviews'
     | '/send-parcel-form'
     | '/track-order'
+    | '/restaurant/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -288,6 +312,7 @@ export interface RootRouteChildren {
   DriverDashboardRoute: typeof DriverDashboardRoute
   DriverHomeRoute: typeof DriverHomeRoute
   FoodOrderFormRoute: typeof FoodOrderFormRoute
+  GroceriesRoute: typeof GroceriesRoute
   LoginRoute: typeof LoginRoute
   MessagesRoute: typeof MessagesRoute
   OrderHistoryRoute: typeof OrderHistoryRoute
@@ -301,6 +326,7 @@ export interface RootRouteChildren {
   ReviewsRoute: typeof ReviewsRoute
   SendParcelFormRoute: typeof SendParcelFormRoute
   TrackOrderRoute: typeof TrackOrderRoute
+  RestaurantSlugRoute: typeof RestaurantSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -359,6 +385,13 @@ declare module '@tanstack/react-router' {
       path: '/food-order-form'
       fullPath: '/food-order-form'
       preLoaderRoute: typeof FoodOrderFormRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/groceries': {
+      id: '/groceries'
+      path: '/groceries'
+      fullPath: '/groceries'
+      preLoaderRoute: typeof GroceriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -452,6 +485,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrackOrderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/restaurant/$slug': {
+      id: '/restaurant/$slug'
+      path: '/restaurant/$slug'
+      fullPath: '/restaurant/$slug'
+      preLoaderRoute: typeof RestaurantSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -464,6 +504,7 @@ const rootRouteChildren: RootRouteChildren = {
   DriverDashboardRoute: DriverDashboardRoute,
   DriverHomeRoute: DriverHomeRoute,
   FoodOrderFormRoute: FoodOrderFormRoute,
+  GroceriesRoute: GroceriesRoute,
   LoginRoute: LoginRoute,
   MessagesRoute: MessagesRoute,
   OrderHistoryRoute: OrderHistoryRoute,
@@ -477,6 +518,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReviewsRoute: ReviewsRoute,
   SendParcelFormRoute: SendParcelFormRoute,
   TrackOrderRoute: TrackOrderRoute,
+  RestaurantSlugRoute: RestaurantSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
