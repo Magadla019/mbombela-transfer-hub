@@ -18,7 +18,8 @@
 - [x] Menu photos on all items, Sync Now button, private chat (/messages + partner Messages), satellite tracker with green route/progress, Google Maps on Start Pickup/Delivery, order ringing every 5 min + Test Sound.
 - [ ] Official restaurant sites must allow automated reading for Sync Now to update prices.
 
-- [ ] Add featured deals slider and partner ad management without touching the hero.
-- [ ] Add restaurant management, independent categories, menu items and public restaurant pages.
-- [ ] Seed the ten existing logos and requested categories; retain uploaded menu data.
-- [ ] Verify upload-to-customer ordering and ads flows.
+- [x] Add featured deals slider and partner ad management without touching the hero.
+- [x] Add restaurant management, independent categories, menu items and public restaurant pages.
+- [x] Seed the ten existing logos and requested categories; retain uploaded menu data.
+- [x] Verify upload-to-customer ordering and ads flows.
+- [ ] Restaurant backgrounds and actual menu photos await the owner's uploads; no substitute food imagery is used.
