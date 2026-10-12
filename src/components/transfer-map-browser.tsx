@@ -44,7 +44,7 @@ const fmtDur = (min: number) => min >= 60 ? `${Math.floor(min / 60)} hr ${min % 
 function Follow({ position, follow }: { position: [number, number]; follow: boolean }) { const map = useMap(); useEffect(() => { if (follow) map.panTo(position); }, [position, follow, map]); return null; }
 function Frame({ points }: { points: [number, number][] }) { const map = useMap(); const key = points.map((p) => p.map((n) => n.toFixed(3)).join(',')).join(';'); useEffect(() => { if (points.length > 1) map.fitBounds(points, { padding: [40, 40], maxZoom: 16 }); else if (points[0]) map.setView(points[0], 16); }, [map, key]); return null; }
 
-export function TransferMap({ driverLocation, destination: given, address }: { driverLocation: LL; destination: LL; address?: string | null }) {
+export function TransferMap({ driverLocation, destination: given, address }: { driverLocation: LL; destination: LL; address?: string | null | undefined }) {
   const [found, setFound] = useState<LL>(undefined);
   useEffect(() => { if (given || !address) return; let on = true; geocode(address).then((g) => { if (on && g) setFound(g); }); return () => { on = false; }; }, [given?.lat, given?.lng, address]);
   const destination = given ?? found;
