@@ -62,6 +62,36 @@ export type Database = {
         }
         Relationships: []
       }
+      ai_chats: {
+        Row: {
+          action_type: string | null
+          ai_response: string | null
+          created_at: string
+          id: string
+          partner_id: string | null
+          provider: string | null
+          user_prompt: string
+        }
+        Insert: {
+          action_type?: string | null
+          ai_response?: string | null
+          created_at?: string
+          id?: string
+          partner_id?: string | null
+          provider?: string | null
+          user_prompt: string
+        }
+        Update: {
+          action_type?: string | null
+          ai_response?: string | null
+          created_at?: string
+          id?: string
+          partner_id?: string | null
+          provider?: string | null
+          user_prompt?: string
+        }
+        Relationships: []
+      }
       app_pricing: {
         Row: {
           category: string
@@ -208,6 +238,42 @@ export type Database = {
           is_online?: boolean
           lat?: number | null
           lng?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      env_vault: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          is_required: boolean
+          key_name: string
+          key_value: string | null
+          platform_group: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          is_required?: boolean
+          key_name: string
+          key_value?: string | null
+          platform_group?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          is_required?: boolean
+          key_name?: string
+          key_value?: string | null
+          platform_group?: string | null
           updated_at?: string
         }
         Relationships: []

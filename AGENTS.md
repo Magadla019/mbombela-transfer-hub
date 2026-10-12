@@ -24,3 +24,4 @@
 - Restaurant categories and items use restaurant-scoped tables and a composite foreign key so an item cannot use another restaurant’s category.
 - Existing restaurant slugs remain stable on rename to preserve saved ad destinations and customer links.
 - Catalogue uploads use signed slots and post-upload browser-facing signed URLs because workspace policy blocks public buckets.
+- Partner API keys live encrypted (AES-GCM, server-side) in env_vault with no client RLS policies, accessed only via staff-token server functions in src/lib/vault.functions.ts; browsers never receive key values.
